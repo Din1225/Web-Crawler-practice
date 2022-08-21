@@ -1,2 +1,2 @@
-# Rent-a-house-data
+# Exhibition-info-Flask
 flask practice
