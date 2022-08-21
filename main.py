@@ -45,27 +45,28 @@ for description in descriptions:
     length = len(description.text)
     for cnt in range(0,length) :
         if ((descriptions[line].text[cnt] == "展") and (descriptions[line].text[cnt+1] == "覽") and (descriptions[line].text[cnt+2] == "票") and (descriptions[line].text[cnt+3] == "價")) or ((descriptions[line].text[cnt] == "門") and (descriptions[line].text[cnt+1] == "票") and (descriptions[line].text[cnt+2] == "資") and (descriptions[line].text[cnt+3] == "訊")):
-            sheet.range(f"D{line+2}").value = descriptions[line].text[cnt-2:]
+            sheet.range(f"D{line+2}").value = descriptions[line].text[cnt+5:].replace("■","/")
             temp1 = cnt-2
             break
         if cnt == length-1 :
-            sheet.range(f"D{line+2}").value = "■ 展覽票價:unknown"
+            sheet.range(f"D{line+2}").value = "待公布"
 
     for cnt in range(0,length) :        
         if (descriptions[line].text[cnt] == "展") and (descriptions[line].text[cnt+1] == "覽") and (descriptions[line].text[cnt+2] == "地") and (descriptions[line].text[cnt+3] == "點") :
-            sheet.range(f"C{line+2}").value = descriptions[line].text[cnt-2:temp1]
+            sheet.range(f"C{line+2}").value = descriptions[line].text[cnt+5:temp1]
             temp2 = cnt-2
             break
         if cnt == length-1 :
-            sheet.range(f"C{line+2}").value = "■ 展覽地點:unknown"
+            sheet.range(f"C{line+2}").value = "待公布"
 
     for cnt in range(0,length) :        
         if ((descriptions[line].text[cnt] == "展") and (descriptions[line].text[cnt+1] == "覽") and (descriptions[line].text[cnt+2] == "時") and (descriptions[line].text[cnt+3] == "間")) or ((descriptions[line].text[cnt] == "展") and (descriptions[line].text[cnt+1] == "覽") and (descriptions[line].text[cnt+2] == "日") and (descriptions[line].text[cnt+3] == "期")):
-            sheet.range(f"B{line+2}").value = descriptions[line].text[cnt-2:temp2]
+            sheet.range(f"B{line+2}").value = descriptions[line].text[cnt+5:temp2]
             break
         if cnt == length-1 :
-            sheet.range(f"B{line+2}").value = "■ 展覽時間:unknown"
+            sheet.range(f"B{line+2}").value = "待公布"
     line+=1
 
-#統一欄寬
-sheet.range("A1:").autofit()
+#整理格式
+sheet.range("A:D").column_width = 23
+sheet.range("A:D").autofit()
