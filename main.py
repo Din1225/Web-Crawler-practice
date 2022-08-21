@@ -67,3 +67,5 @@ for city in cities :
 
 workbook.sheets['工作表1'].delete()
 workbook.save("展覽資訊.xlsx")
+
+
