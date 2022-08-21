@@ -3,8 +3,7 @@ from bs4 import BeautifulSoup
 import pandas as pd
 import xlwings as xw
 
-
-
+#爬台北展覽的資料
 res = requests.get("https://www.funtime.com.tw/localtour/topic/index.php?theme=taiwan-exhibition&target=taipei")
 res.encoding="UTF-8"
 html = BeautifulSoup(res.text,"html.parser")
@@ -15,7 +14,6 @@ descriptions = html.findAll("div",{"class":"type_c_sub_description"})
 
 workbook = xw.Book()
 sheet = workbook.sheets["工作表1"]
-
 sheet.range("A1:D1").value = ["展覽名稱","展覽時間","展覽地點","票價資訊"]
 
 #寫入展名
@@ -24,16 +22,7 @@ for title in titles :
     sheet.range(f"A{row}").value = title.text.replace("常見問題","")
     row+=1
 
-
-# row = 1
-# for description in descriptions:
-#     sheet.range(f"B{row}").value = description.text
-#     row+=2
-# sheet.range("A:B").autofit()
-
-
-
-#debug
+#(debug)
 #print(descriptions[1].text[103])
 #print(len(descriptions[1].text))
 
@@ -70,3 +59,4 @@ for description in descriptions:
 #整理格式
 sheet.range("A:D").column_width = 23
 sheet.range("A:D").autofit()
+
