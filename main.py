@@ -65,7 +65,7 @@ for city in cities :
     sheet.range("A:D").column_width = 23
     sheet.range("A:D").autofit()
 
-workbook.sheets['工作表1'].delete()
 workbook.save("展覽資訊.xlsx")
+workbook.close()
 
 
