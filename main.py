@@ -95,7 +95,7 @@ def find_data():
     #整理格式
     sheet.range("A:D").column_width = 23
     sheet.range("A:D").autofit()
-    workbook.save(f"{city}展覽資訊.xlsx")
+    workbook.save(f"{city}展覽資訊.xlsx") 
     #workbook.close()
     
 #使用者介面
